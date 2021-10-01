@@ -1,6 +1,6 @@
-namespace FileName.Models
+namespace OrderTracker.Models
 {
-  public class NameThis
+  public class Order
   {
     // add constructors here!
     // ex:
