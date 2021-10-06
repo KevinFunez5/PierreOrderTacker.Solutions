@@ -15,13 +15,17 @@ namespace OrderTracker
           .AddEnvironmentVariables();
       Configuration = builder.Build();
     }
+
     public IConfigurationRoot Configuration { get; }
+
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
     }
+
     public void Configure(IApplicationBuilder app)
     {
+      app.UseDeveloperExceptionPage();
       app.UseRouting();
 
       app.UseEndpoints(routes =>
@@ -29,12 +33,12 @@ namespace OrderTracker
         routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
       });
 
+      app.UseStaticFiles();
+      
       app.Run(async (context) =>
       {
-        //this line exists to help us know if there are errors:
         await context.Response.WriteAsync("Hello World!");
       });
-      app.UseDeveloperExceptionPage();
     }
   }
 }
