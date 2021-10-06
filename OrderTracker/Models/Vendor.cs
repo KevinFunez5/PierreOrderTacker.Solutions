@@ -1,9 +1,29 @@
+using System.Collections.Generic;
+
 namespace OrderTracker.Models
 {
   public class Vendor
   {
-    // add constructors here!
-    // ex:
-    // public string Recipient {get; set;}
+    public string Name { get; set; }
+    public List<Order> Orders { get; set; }
+    public int Id { get; }
+    private static List<Vendor> _vendorList = new List<Vendor>{};
+
+    public Vendor(string name)
+    {
+      Name = name;
+      Orders = new List<Order>{};
+      Id = _vendorList.Count + 101;
+      _vendorList.Add(this);
+    }
+
+    public static List<Vendor> GetAll()
+    {
+      return _vendorList;
+    }
+    public static void ClearAll()
+    {
+      _vendorList.Clear();
+    }
   }
 }
