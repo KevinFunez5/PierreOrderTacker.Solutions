@@ -13,7 +13,7 @@ namespace OrderTracker.Models
     {
       Name = name;
       Orders = new List<Order>{};
-      Id = _vendorList.Count + 101;
+      Id = _vendorList.Count+1;
       _vendorList.Add(this);
     }
 
@@ -29,12 +29,12 @@ namespace OrderTracker.Models
 
     public static Vendor GetById(int id)
     {
-      return _vendorList[id - 1];
+      return _vendorList[id-1];
     }
 
-    public void AddOrder(string title, string description, double cost)
+    public void AddOrder(string title, string description, double cost, int month, int day)
     {
-      Order newOrder = new(title, description, cost);
+      Order newOrder = new(title, description, cost, month, day);
       Orders.Add(newOrder);
     }
   }
