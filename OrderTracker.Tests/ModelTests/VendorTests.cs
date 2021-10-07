@@ -27,5 +27,14 @@ namespace OrderTracker.Tests
       List<Vendor> expected = new List<Vendor>{vendor1, vendor2};
       CollectionAssert.AreEqual(expected, Vendor.GetAll());
     }
+
+    [TestMethod]
+    public void GetById_ReturnsVendorId_VendorList()
+    {
+      Vendor.ClearAll();
+      Vendor vendor1 = new("Vendor1");
+      Vendor vendor2 = new("Vendor2");
+      Assert.AreEqual(vendor2, Vendor.GetbyId(2));
+    }
   }
 }
