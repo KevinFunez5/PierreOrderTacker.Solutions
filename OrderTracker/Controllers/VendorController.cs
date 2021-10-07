@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System;
 using Microsoft.AspNetCore.Mvc;
 using OrderTracker.Models;
 
 namespace OrderTracker.Controllers
 {
-  public class VendorController : Controller
+  public class VendorsController : Controller
   {
     [HttpGet("/vendors")]
     public ActionResult Index()
@@ -32,10 +31,22 @@ namespace OrderTracker.Controllers
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Vendor vendor = Vendor.GetById(id);
-      List<Order> categoryItems = vendor.Orders;
-      model.Add("Vendor:", vendor);
-      model.Add("Orders:", categoryItems);
+      List<Order> VendorItems = vendor.Orders;
+      model.Add("vendor", vendor);
+      model.Add("orders", VendorItems);
       return View(model);
+    }
+
+    [HttpPost("/vendors/{vendorId}/orders")]
+    public ActionResult Create(int vendorId, string title, string description, double cost, int month, int day)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Vendor vendor = Vendor.GetById(vendorId);
+      vendor.AddOrder(title, description, cost, month, day);
+      List<Order> orders = vendor.Orders;
+      model.Add("vendor", vendor);
+      model.Add("orders", orders);
+      return View("Show", model);
     }
   }
 }
