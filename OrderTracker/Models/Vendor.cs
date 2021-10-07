@@ -27,5 +27,9 @@ namespace OrderTracker.Models
       _vendorList.Clear();
     }
 
+    public static Vendor GetById(int id)
+    {
+      return _vendorList[id - 1];
+    }
   }
 }

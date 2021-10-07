@@ -34,7 +34,7 @@ namespace OrderTracker.Tests
       Vendor.ClearAll();
       Vendor vendor1 = new("Vendor1");
       Vendor vendor2 = new("Vendor2");
-      Assert.AreEqual(vendor2, Vendor.GetbyId(2));
+      Assert.AreEqual(vendor2, Vendor.GetById(2));
     }
   }
 }
