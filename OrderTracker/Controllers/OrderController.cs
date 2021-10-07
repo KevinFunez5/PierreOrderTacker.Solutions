@@ -13,11 +13,11 @@ namespace OrderTracker.Controllers
       return View(vendor);
     }
 
-      [HttpGet("/vendors/{vendorId}/orders/{orderId}")]
+    [HttpGet("/vendors/{vendorId}/orders/{orderId}")]
     public ActionResult Show(int vendorId, int orderId)
     {
-      Order order = Order.GetById(orderId);
       Vendor vendor = Vendor.GetById(vendorId);
+      Order order = vendor.Orders[orderId-1];
       Dictionary<string, object> model = new Dictionary<string, object>();
       model.Add("order", order);
       model.Add("vendor", vendor);
