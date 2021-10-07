@@ -22,5 +22,10 @@ namespace OrderTracker.Models
       DeliveryDate = new DateTime(2021, month, day);
       Id = _orderList.Count;
     }
+
+    public static Order GetById(int id)
+    {
+      return _orderList[id-1];
+    }
   }
 }
